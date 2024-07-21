@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Grid" load_steps=2 format=3 uid="uid://ccg0dglaxc41w"]
+
+[ext_resource type="Script" path="res://Scripts/Grid.gd" id="1_puiva"]
+
+[resource]
+script = ExtResource("1_puiva")
