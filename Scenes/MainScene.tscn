@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://b44phj5idwf4e"]
+[gd_scene load_steps=18 format=3 uid="uid://b44phj5idwf4e"]
 
 [ext_resource type="Texture2D" uid="uid://cf0m5omki4bjo" path="res://Assets/Texture/TX Tileset Grass.png" id="1_1h3tw"]
-[ext_resource type="PackedScene" uid="uid://drcpr5rmvwjj3" path="res://Scenes/Player.tscn" id="2_sigea"]
 [ext_resource type="Script" path="res://Scripts/BebG.gd" id="3_8egng"]
 [ext_resource type="Texture2D" uid="uid://bpr8iyjrt1t7d" path="res://Assets/Cursor.png" id="3_8ksq1"]
 [ext_resource type="Script" path="res://Scripts/Cursor.gd" id="4_1xfdg"]
 [ext_resource type="PackedScene" uid="uid://dadcqnbmm4jwm" path="res://Scenes/Evil Shadow 1.tscn" id="6_ab4r2"]
 [ext_resource type="Script" path="res://Scripts/EvilShadow1.gd" id="7_wtkaf"]
+[ext_resource type="Script" path="res://Scripts/UI Elements.gd" id="8_jjch7"]
+[ext_resource type="Texture2D" uid="uid://c61higufym2rg" path="res://Assets/Character Sprites/unit_shadow.svg" id="9_gyv2f"]
+[ext_resource type="Texture2D" uid="uid://df2uah6d0cmgq" path="res://Assets/Character Sprites/BebG Sprite.png" id="10_o153q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jtmqj"]
 texture = ExtResource("1_1h3tw")
@@ -101,6 +103,53 @@ sources/1 = SubResource("TileSetAtlasSource_jtmqj")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hs6ka"]
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7i613"]
+size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_hfx8u"]
+resource_name = "selected"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2.31028e-06, 0.456592, 0.630041, 0.992157)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfh1t"]
+_data = {
+"selected": SubResource("Animation_hfx8u")
+}
+
+[sub_resource type="Animation" id="Animation_v3qrb"]
+resource_name = "selected"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.00592913, 0, 0.980892, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j618n"]
+_data = {
+"selected": SubResource("Animation_v3qrb")
+}
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -108,33 +157,6 @@ position = Vector2(160, 160)
 tile_set = SubResource("TileSet_yej3q")
 format = 2
 layer_0/tile_data = PackedInt32Array(-262149, 65537, 2, -262148, 65537, 2, -196612, 65537, 2, -196611, 65537, 2, -196610, 65537, 2, -196609, 65537, 2, -262144, 65537, 2, -262143, 65537, 2, -262142, 65537, 2, -262141, 65537, 2, -262140, 65537, 2, 196612, 458753, 2, 196611, 262145, 2, 196610, 327681, 3, 196609, 393217, 6, 196608, 65537, 7, 262143, 1, 0, 262142, 1, 0, 262141, 1, 0, 262140, 1, 0, 262139, 1, 0, 196603, 1, 0, 131067, 1, 0, 65531, 1, 4, -65541, 65537, 2, -131077, 65537, 2, -196613, 65537, 2, -262147, 65537, 2, -262146, 65537, 2, -262145, 65537, 2, -327680, 65537, 2, -327679, 65537, 2, -327678, 65537, 2, -327677, 65537, 2, -327676, 65537, 2, -196604, 65537, 2, -196605, 65537, 2, -196606, 65537, 2, -196607, 65537, 2, -196608, 65537, 2, -131073, 65537, 2, -131074, 65537, 2, -131075, 65537, 2, -131076, 65537, 2, -65540, 65537, 2, 65532, 1, 4, 131068, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 4, 131076, 1, 0, 65540, 1, 0, 4, 1, 4, -131068, 65537, 2, -131069, 1, 0, -131071, 65537, 2, -131072, 65537, 2, -65537, 65537, 2, -65538, 65537, 2, -65539, 65537, 2, 65534, 1, 4, 65535, 1, 4, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 4, -65532, 65537, 2, -65533, 65537, 2, -131070, 65537, 2, -65534, 65537, 2, 2, 1, 4, 3, 1, 4, 1, 1, 4, -65535, 65537, 2, -65536, 65537, 2, -1, 65537, 2, 0, 1, 4, 131071, 1, 0, 131070, 1, 0, 131069, 1, 0, 65533, 1, 4, 327675, 1, 0, 327676, 1, 0, 327677, 1, 0, 327678, 1, 0, 327679, 65537, 5, 262144, 327681, 6, 262145, 458753, 6, 262146, 262145, 2, 262147, 262145, 1, 262148, 327681, 3, -5, 65537, 2, -4, 65537, 2, -3, 65537, 2, -2, 65537, 2)
-
-[node name="BebG" parent="." instance=ExtResource("2_sigea")]
-position = Vector2(160, 64)
-script = ExtResource("3_8egng")
-
-[node name="BebG2" parent="." instance=ExtResource("2_sigea")]
-visible = false
-modulate = Color(0.281187, 0.281187, 0.281187, 0.737255)
-position = Vector2(160, 64)
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("3_8egng")
-
-[node name="Cursor" type="Sprite2D" parent="."]
-position = Vector2(352, -226)
-texture = ExtResource("3_8ksq1")
-centered = false
-script = ExtResource("4_1xfdg")
-
-[node name="Camera2D" type="Camera2D" parent="Cursor"]
-zoom = Vector2(2, 2)
-
-[node name="Panel" type="Panel" parent="Cursor/Camera2D"]
-offset_left = -288.0
-offset_top = 122.0
-offset_right = -248.0
-offset_bottom = 162.0
 
 [node name="Evil Shadow 1" parent="." instance=ExtResource("6_ab4r2")]
 position = Vector2(32, 32)
@@ -204,131 +226,445 @@ position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_hs6ka")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="MovementSpaces" type="Node2D" parent="."]
+[node name="BebGMovementTiles_2" type="Node2D" parent="."]
 position = Vector2(160, 64)
 
-[node name="TopRight" type="Sprite2D" parent="MovementSpaces"]
+[node name="TopRight" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(64, -64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="TopLeft" type="Sprite2D" parent="MovementSpaces"]
+[node name="TopLeft" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-64, -64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="BottomRight" type="Sprite2D" parent="MovementSpaces"]
+[node name="BottomRight" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(64, 64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="BottomLeft" type="Sprite2D" parent="MovementSpaces"]
+[node name="BottomLeft" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-64, 64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace1" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace1" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(32, 0)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace2" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace2" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(32, 32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace3" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace3" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(0, 32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace4" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace4" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-32, 32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace5" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace5" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-32, 0)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace6" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace6" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-32, -32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace7" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace7" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(0, -32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace8" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace8" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(32, -32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace9" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace9" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(64, -32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace10" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace10" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(64, 0)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace12" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace12" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(32, 64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace13" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace13" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(0, 64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace14" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace14" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-32, 64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace16" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace16" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-64, 32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace17" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace17" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-64, 0)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace18" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace18" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-64, -32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace19" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace19" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(64, 32)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace21" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace21" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(-32, -64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace22" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace22" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(0, -64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace23" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace23" type="Sprite2D" parent="BebGMovementTiles_2"]
 position = Vector2(32, -64)
 texture = ExtResource("3_8ksq1")
 centered = false
 
-[node name="MovementSpace25" type="Sprite2D" parent="MovementSpaces"]
+[node name="MovementSpace25" type="Sprite2D" parent="BebGMovementTiles_2"]
 texture = ExtResource("3_8ksq1")
 centered = false
 
+[node name="Cursor" type="Sprite2D" parent="."]
+position = Vector2(352, -226)
+texture = ExtResource("3_8ksq1")
+centered = false
+script = ExtResource("4_1xfdg")
+
+[node name="Camera2D" type="Camera2D" parent="Cursor"]
+zoom = Vector2(2, 2)
+
+[node name="UI Elements" type="Control" parent="Cursor/Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -288.0
+offset_top = -158.0
+offset_right = 288.0
+offset_bottom = 162.0
+script = ExtResource("8_jjch7")
+
+[node name="SelectionMenu" type="MarginContainer" parent="Cursor/Camera2D/UI Elements"]
+visible = false
+layout_mode = 2
+offset_left = 225.0
+offset_top = 147.0
+offset_right = 325.0
+offset_bottom = 242.0
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="Cursor/Camera2D/UI Elements/SelectionMenu"]
+modulate = Color(0.439049, 0.439049, 0.439049, 1)
+layout_mode = 2
+texture = ExtResource("1_1h3tw")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Cursor/Camera2D/UI Elements/SelectionMenu"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Attack" type="Button" parent="Cursor/Camera2D/UI Elements/SelectionMenu/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Items")
+mouse_filter = 2
+text = "Attack"
+
+[node name="Items" type="Button" parent="Cursor/Camera2D/UI Elements/SelectionMenu/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Attack")
+focus_neighbor_bottom = NodePath("../Wait")
+mouse_filter = 2
+text = "Items"
+
+[node name="Wait" type="Button" parent="Cursor/Camera2D/UI Elements/SelectionMenu/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Items")
+mouse_filter = 2
+text = "Wait"
+
+[node name="BebGg" type="CharacterBody2D" parent="."]
+position = Vector2(160, 64)
+script = ExtResource("3_8egng")
+
+[node name="Shadow" type="Sprite2D" parent="BebGg"]
+modulate = Color(0.122252, 0.122252, 0.122252, 1)
+position = Vector2(16, 31)
+scale = Vector2(0.372093, 0.25)
+texture = ExtResource("9_gyv2f")
+
+[node name="Sprite2D" type="Sprite2D" parent="BebGg"]
+scale = Vector2(0.0701754, 0.0647773)
+texture = ExtResource("10_o153q")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BebGg"]
+visible = false
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_7i613")
+debug_color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BebGg"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_yfh1t")
+}
+
+[node name="MovementSpaces2" type="Node2D" parent="BebGg"]
+visible = false
+
+[node name="MovementSpace1" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(48, 16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace2" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(48, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace3" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(16, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace4" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-16, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace5" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-16, 16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace6" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-16, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace7" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(16, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace8" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(48, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace9" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(80, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace10" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(80, 16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace11" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(80, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace12" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(48, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace13" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(16, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace14" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-16, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace15" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-48, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace16" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-48, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace17" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-48, 16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace18" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-48, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace19" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(80, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace20" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-48, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace21" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(-16, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace22" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(16, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace23" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(48, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace24" type="Sprite2D" parent="BebGg/MovementSpaces2"]
+position = Vector2(80, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="BebGSelectShadow" type="CharacterBody2D" parent="."]
+visible = false
+modulate = Color(0.27451, 0.27451, 0.27451, 0.635294)
+position = Vector2(160, 64)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_8egng")
+
+[node name="Shadow" type="Sprite2D" parent="BebGSelectShadow"]
+modulate = Color(0.122252, 0.122252, 0.122252, 1)
+position = Vector2(16, 31)
+scale = Vector2(0.372093, 0.25)
+texture = ExtResource("9_gyv2f")
+
+[node name="Sprite2D" type="Sprite2D" parent="BebGSelectShadow"]
+scale = Vector2(0.0701754, 0.0647773)
+texture = ExtResource("10_o153q")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BebGSelectShadow"]
+visible = false
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_7i613")
+debug_color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BebGSelectShadow"]
+libraries = {
+"": SubResource("AnimationLibrary_j618n")
+}
+
+[node name="MovementSpaces2" type="Node2D" parent="BebGSelectShadow"]
+visible = false
+
+[node name="MovementSpace1" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(48, 16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace2" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(48, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace3" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(16, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace4" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-16, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace5" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-16, 16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace6" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-16, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace7" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(16, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace8" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(48, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace9" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(80, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace10" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(80, 16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace11" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(80, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace12" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(48, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace13" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(16, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace14" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-16, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace15" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-48, 80)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace16" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-48, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace17" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-48, 16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace18" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-48, -16)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace19" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(80, 48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace20" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-48, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace21" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(-16, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace22" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(16, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace23" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(48, -48)
+texture = ExtResource("3_8ksq1")
+
+[node name="MovementSpace24" type="Sprite2D" parent="BebGSelectShadow/MovementSpaces2"]
+position = Vector2(80, -48)
+texture = ExtResource("3_8ksq1")
+
 [connection signal="body_entered" from="Evil Shadow 1/Evil Shadow 1 cba/MovementSpace1" to="Evil Shadow 1" method="_on_movement_space_1_body_entered"]
+[connection signal="pressed" from="Cursor/Camera2D/UI Elements/SelectionMenu/VBoxContainer/Attack" to="Cursor/Camera2D/UI Elements" method="_on_attack_button_pressed"]
+[connection signal="pressed" from="Cursor/Camera2D/UI Elements/SelectionMenu/VBoxContainer/Items" to="Cursor/Camera2D/UI Elements" method="_on_items_pressed"]
+[connection signal="pressed" from="Cursor/Camera2D/UI Elements/SelectionMenu/VBoxContainer/Wait" to="Cursor/Camera2D/UI Elements" method="_on_wait_pressed"]
